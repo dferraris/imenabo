@@ -1,22 +1,23 @@
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "name": "Publycom-iMenabo-App",
+  "version": "0.0.1",
+  "description": "Newspaper or magazine advertising layout editor",
   "keywords": [
-    "OpenShift",
     "Node.js",
     "application",
-    "openshift"
+    "newspaper",
+    "layout",
+    "editor"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url":  "http://www.openshift.com/"
+    "name": "Publycom",
+    "email": "davide@publycom.it",
+    "url":  "http://publycom.it/"
   },
-  "homepage": "http://www.openshift.com/",
+  "homepage": "http://publycom.it/",
   "repository": {
     "type": "git",
-    "url": "https://gitub.com/openshift/origin-server"
+    "url": "https://gitub.com/dferraris/imenabo"
   },
 
   "engines": {
