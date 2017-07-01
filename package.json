@@ -1,5 +1,5 @@
 {
-  "name": "Publycom-iMenabo-App",
+  "name": "iMenabo",
   "version": "0.0.1",
   "description": "Newspaper or magazine advertising layout editor",
   "keywords": [
@@ -10,7 +10,7 @@
     "editor"
   ],
   "author": {
-    "name": "Publycom",
+    "name": "Davide Ferraris",
     "email": "davide@publycom.it",
     "url":  "http://publycom.it/"
   },
@@ -19,17 +19,19 @@
     "type": "git",
     "url": "https://gitub.com/dferraris/imenabo"
   },
-
   "engines": {
     "node": ">= 0.6.0",
     "npm": ">= 1.0.0"
   },
-
   "dependencies": {
+    "socket.io": ">= 0.8.7"
   },
   "devDependencies": {},
   "bundleDependencies": [],
-
+  "plugin": {
+    "consumes": [],
+    "provides": ["useful"]
+  },
   "private": true,
   "main": "server.js"
 }

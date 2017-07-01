@@ -3,9 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
   <title>iMenabo</title>
-</head>
-<body>
+  <link rel="stylesheet" href="static/style.css" type="text/css" />
+  <script src="/socket.io/socket.io.js"></script>
+  
+  <script>
+    onerror = function (msg) {
+      log(msg);
+    }
+    function log(msg) {
+      document.getElementById('log').appendChild(document.createTextNode(new Date() + ' ' + msg + '\n'));
+    }
+    function status(msg) {
+      log(msg);
+      document.getElementById('status').textContent = msg;
+    }
+    function clearLog() {
+      var e = document.getElementById('log');
+      while (e.hasChildNodes()) {
+        e.removeChild(e.firstChild);
+      }
+      e.appendChild(document.createTextNode('Log: \n'));
+    }
+  </script>
+
+  <script>
+    var socket = null;
+    function connect() {
+      log('Connecting to local server...');
+      if (socket == null) {
+        socket = io.connect(null,{'auto connect': false});
+        socket.on('connect', function () {
+          status('Connected');
+        });
+  
+        socket.on('message', function (data) {
+          log(data);
+        });
+      }
+      socket.socket.connect();
+    }
     
+    function send() {
+      if (socket && socket.socket.connected) {
+      socket.send(document.getElementById('text').value);
+        log('>' + document.getElementById('text').value);
+      } else {
+        log('Not connected.');
+      }
+    }
+    
+    function send100() {
+      if (socket && socket.socket.connected) {
+      for (var i = 0; i < 100; i += 1) {
+        socket.send('test'+ i);
+        log('> test' + i);
+      }
+      } else {
+        log('Not connected.');
+      }
+    }
+    
+    function update() {
+      if (socket && socket.socket && socket.socket.transport) {
+        document.getElementById('sessionId').textContent = socket.socket.transport.sessid;
+        document.getElementById('transport').textContent = socket.socket.transport.name;
+      } else {
+        document.getElementById('sessionId').textContent = '-';
+        document.getElementById('transport').textContent = '-';
+      }
+      }
+      setInterval(update, 10);
+  
+  </script>
+  
+</head>
+<body onload="connect()">
+    <header>
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <header>
+              <a class="brand">iMenabo</a>
+            </header>
+            <nav id="mainnav" class="nav-collapse collapse">
+              <ul class="nav nav-pills">
+                <li class="active"><a href="/" ><i class="icon-home icon-white"></i></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <content>
+      <sidebar>
+        <p>Sidebar</p>
+        <div id="Settings">
+          
+        </div>
+      </sidebar>
+    </content>
+    <footer>
+      &copy; 2015 Publycom
+    </footer>
 </body>
 </html>
